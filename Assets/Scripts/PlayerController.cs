@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform[] leftWallCheckPoints;
     [SerializeField] private Transform[] rightWallCheckPoints;
     [SerializeField] private Transform[] ceilingCheckPoints;
+    [SerializeField] private LayerMask detectionLayerMask;
 
     private bool isGrounded, isChargingJump, isJumping, isTouchingLeftWall, isTouchingRightWall, isTouchingCeiling;
     private float currentJumpForce = 0f;
@@ -69,6 +71,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && !isJumping && !isChargingJump)
             rb.velocity = new Vector2(movement.x, rb.velocity.y);
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            transform.position = new Vector2 (4, 82);
+        }
     }
 
     private void Jump()
@@ -90,11 +96,12 @@ public class PlayerController : MonoBehaviour
         normal = Vector2.zero;
         foreach (var point in checkPoints)
         {
-            RaycastHit2D hit = Physics2D.Raycast(point.position, direction, checkRadius);
+            RaycastHit2D hit = Physics2D.Raycast(point.position, direction, checkRadius, detectionLayerMask);
             if (hit) { normal = hit.normal; return true; }
         }
         return false;
     }
+
 
     private void OnDrawGizmosSelected()
     {
