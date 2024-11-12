@@ -14,6 +14,6 @@ public class Scene : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("background");
+        SceneManager.LoadScene("Level");
     }
 }
