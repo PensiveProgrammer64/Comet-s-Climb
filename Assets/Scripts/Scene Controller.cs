@@ -12,4 +12,8 @@ public class Scene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+    public void StartGame()
+    {
+        SceneManager.LoadScene("background");
+    }
 }
