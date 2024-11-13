@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEditor.UI;
 using UnityEngine;
 
@@ -17,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform[] rightWallCheckPoints;
     [SerializeField] private Transform[] ceilingCheckPoints;
     [SerializeField] private LayerMask detectionLayerMask;
+   
 
     private bool isGrounded, isChargingJump, isJumping, isTouchingLeftWall, isTouchingRightWall, isTouchingCeiling;
     private float currentJumpForce = 0f;
@@ -25,7 +25,12 @@ public class PlayerController : MonoBehaviour
     private enum WallSide { None, Left, Right }
     private WallSide lastWallSideTouched = WallSide.None;
 
-    void Start() { rb = GetComponent<Rigidbody2D>(); }
+    void Start() 
+    { 
+        rb = GetComponent<Rigidbody2D>(); 
+        
+    }
+
 
     void Update()
     {

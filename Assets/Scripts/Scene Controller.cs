@@ -16,4 +16,10 @@ public class Scene : MonoBehaviour
     {
         SceneManager.LoadScene("Level");
     }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("quitting game");
+    }
 }
