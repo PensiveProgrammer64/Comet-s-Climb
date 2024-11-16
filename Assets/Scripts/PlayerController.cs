@@ -1,4 +1,5 @@
 
+using UnityEditor.Rendering;
 using UnityEditor.UI;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 movement = Vector2.zero;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float minJumpForce = 5f;
     [SerializeField] private float maxJumpForce = 15f;
-    [SerializeField] private float chargeRate = 5f;
+    [SerializeField] private float chargeRate = 0f;
     [SerializeField] private float checkRadius = 0.1f;
     [SerializeField] private Transform[] groundCheckPoints;
     [SerializeField] private Transform[] leftWallCheckPoints;
@@ -21,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded, isChargingJump, isJumping, isTouchingLeftWall, isTouchingRightWall, isTouchingCeiling;
     private float currentJumpForce = 0f;
     private Vector2 lastMovementDirection = Vector2.right;
+    private float lastWalkingDirection = 5;
+
 
     private enum WallSide { None, Left, Right }
     private WallSide lastWallSideTouched = WallSide.None;
@@ -28,12 +33,15 @@ public class PlayerController : MonoBehaviour
     void Start() 
     { 
         rb = GetComponent<Rigidbody2D>(); 
-        
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
     void Update()
     {
+       
+        HandleAnimation();
         float preCollisionXVelocity = rb.velocity.x;
         isGrounded = CheckMultipleSurfaces(groundCheckPoints, Vector2.down, out Vector2 groundNormal) && Mathf.Approximately(groundNormal.y, 1);
         isTouchingLeftWall = CheckMultipleSurfaces(leftWallCheckPoints, Vector2.left, out Vector2 leftWallNormal) && Mathf.Approximately(leftWallNormal.x, 1);
@@ -41,7 +49,11 @@ public class PlayerController : MonoBehaviour
         isTouchingCeiling = CheckMultipleSurfaces(ceilingCheckPoints, Vector2.up, out Vector2 ceilingNormal) && Mathf.Approximately(ceilingNormal.y, -1);
 
         if (isGrounded && !isJumping && !isChargingJump) movement.x = Input.GetAxisRaw("Horizontal") * movementSpeed;
-
+        if(lastWalkingDirection != movement.x && Mathf.Approximately(lastWalkingDirection,0f))
+        {
+            Flip();
+            
+        }
         if (isTouchingLeftWall && lastWallSideTouched != WallSide.Left)
         {
             ReverseHorizontalVelocity(preCollisionXVelocity);
@@ -70,6 +82,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (isChargingJump && Input.GetButtonUp("Jump")) { Jump(); isChargingJump = false; }
         }
+        lastWalkingDirection = movement.x;
     }
 
     private void FixedUpdate()
@@ -115,5 +128,14 @@ public class PlayerController : MonoBehaviour
         foreach (var point in leftWallCheckPoints) Gizmos.DrawWireSphere(point.position, checkRadius);
         foreach (var point in rightWallCheckPoints) Gizmos.DrawWireSphere(point.position, checkRadius);
         foreach (var point in ceilingCheckPoints) Gizmos.DrawWireSphere(point.position, checkRadius);
+    }
+    void HandleAnimation ()
+    {
+        animator.SetBool("isWalking", movement.x !=0f);
+        animator.SetBool("isJumping", !isGrounded);
+    }
+    void Flip ()
+    {
+        spriteRenderer.flipX = !spriteRenderer.flipX;
     }
 }
