@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded, isChargingJump, isJumping, isTouchingLeftWall, isTouchingRightWall, isTouchingCeiling;
     private float currentJumpForce = 0f;
     private Vector2 lastMovementDirection = Vector2.right;
-    private float lastWalkingDirection = 5;
+    private float lastWalkingDirection = 5f;
 
 
     private enum WallSide { None, Left, Right }
@@ -49,10 +49,13 @@ public class PlayerController : MonoBehaviour
         isTouchingCeiling = CheckMultipleSurfaces(ceilingCheckPoints, Vector2.up, out Vector2 ceilingNormal) && Mathf.Approximately(ceilingNormal.y, -1);
 
         if (isGrounded && !isJumping && !isChargingJump) movement.x = Input.GetAxisRaw("Horizontal") * movementSpeed;
-        if(lastWalkingDirection != movement.x && Mathf.Approximately(lastWalkingDirection,0f))
+        if ((movement.x > 0 && lastWalkingDirection < 0) || (movement.x < 0 && lastWalkingDirection > 0))
         {
             Flip();
-            
+        }
+        if (movement.x != 0)
+        {
+            lastWalkingDirection = movement.x;
         }
         if (isTouchingLeftWall && lastWallSideTouched != WallSide.Left)
         {
@@ -82,7 +85,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (isChargingJump && Input.GetButtonUp("Jump")) { Jump(); isChargingJump = false; }
         }
-        lastWalkingDirection = movement.x;
     }
 
     private void FixedUpdate()
@@ -136,6 +138,8 @@ public class PlayerController : MonoBehaviour
     }
     void Flip ()
     {
+        Debug.Log("Player Sprite Begin Flip Method");
         spriteRenderer.flipX = !spriteRenderer.flipX;
+        Debug.Log("Player Sprite End Flip Method");
     }
 }
