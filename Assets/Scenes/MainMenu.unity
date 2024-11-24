@@ -520,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 421930316}
   - component: {fileID: 421930317}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839973835}
   - component: {fileID: 839973836}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -969,7 +969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 874887417}
   - component: {fileID: 874887418}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 899714136}
   - component: {fileID: 899714137}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1461,7 +1461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1272046222}
   - component: {fileID: 1272046223}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1545,7 +1545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1300113315}
   - component: {fileID: 1300113316}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1628,7 +1628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339457352}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: forestbackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1644,7 +1644,7 @@ Transform:
   m_GameObject: {fileID: 1339457351}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -28.5, z: 0}
+  m_LocalPosition: {x: -1470, y: 136, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1804,7 +1804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1409660835}
   - component: {fileID: 1409660836}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2099,7 +2099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1702255984}
   - component: {fileID: 1702255985}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2183,7 +2183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708805948}
   - component: {fileID: 1708805949}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2267,7 +2267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007932771}
   - component: {fileID: 2007932772}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: backroundstuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
