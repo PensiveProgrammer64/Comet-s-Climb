@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private bool dead =false;
+  
     private Vector2 movement = Vector2.zero;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -31,13 +33,19 @@ public class PlayerController : MonoBehaviour
     private enum WallSide { None, Left, Right }
     private WallSide lastWallSideTouched = WallSide.None;
 
+    public bool Dead { get => dead; set => dead = value; }
+
     void Start() 
     { 
         rb = GetComponent<Rigidbody2D>(); 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
+     public void Die() 
+     {
+        Dead = true;
+        
+     }
 
     void Update()
     {
@@ -143,4 +151,5 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.flipX = !spriteRenderer.flipX;
         Debug.Log("Player Sprite End Flip Method");
     }
+    
 }
