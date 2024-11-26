@@ -8,13 +8,13 @@ public class deathMenu : MonoBehaviour
      private PlayerController player;
     public static bool isPaused;
 
-    void Start()
+   public void Start()
     {
         player = FindFirstObjectByType<PlayerController>();
         DeadMenu.SetActive(false);
     }
 
-    void Update()
+    public void Update()
     {
         if(player.GetIsDead()==true)
         {
