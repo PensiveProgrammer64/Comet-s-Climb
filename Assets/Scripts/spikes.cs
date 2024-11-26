@@ -8,7 +8,7 @@ public class Spikes : MonoBehaviour
         if (collision.collider.GetComponent<PlayerController>()) 
         {
 
-            collision.collider.GetComponent<PlayerController>().Die();
+            collision.collider.GetComponent<PlayerController>().SetIsDead(true);
             Debug.Log("Dead");
         }
 

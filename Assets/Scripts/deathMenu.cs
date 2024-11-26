@@ -16,15 +16,9 @@ public class deathMenu : MonoBehaviour
 
     void Update()
     {
-        if(player.Dead)
+        if(player.GetIsDead()==true)
         {
-            if(isPaused)
-            {
-                ResumeGame();
-            }else
-            {
-                PauseGame();
-            }
+           PauseGame();
         }
     }
    
@@ -38,8 +32,9 @@ public class deathMenu : MonoBehaviour
     public void ResumeGame()
     {
         DeadMenu.SetActive(false);
-        Time.timeScale = 1f;
         isPaused = false;
+        player.SetIsDead(false);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level");
         Debug.Log("Loading level");
     }
