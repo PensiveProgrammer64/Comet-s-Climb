@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private bool dead =false;
-  
     private Vector2 movement = Vector2.zero;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -22,18 +20,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform[] rightWallCheckPoints;
     [SerializeField] private Transform[] ceilingCheckPoints;
     [SerializeField] private LayerMask detectionLayerMask;
-   
-
-    private bool isGrounded, isChargingJump, isJumping, isTouchingLeftWall, isTouchingRightWall, isTouchingCeiling;
+    private bool isGrounded, isChargingJump, isJumping, isTouchingLeftWall, isTouchingRightWall, isTouchingCeiling, isDead;
     private float currentJumpForce = 0f;
     private Vector2 lastMovementDirection = Vector2.right;
     private float lastWalkingDirection = 5f;
-
-
     private enum WallSide { None, Left, Right }
     private WallSide lastWallSideTouched = WallSide.None;
-
-    public bool Dead { get => dead; set => dead = value; }
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+    public void SetIsDead(bool value)
+    {
+        isDead = value;
+    }
 
     void Start() 
     { 
@@ -41,12 +41,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-     public void Die() 
-     {
-        Dead = true;
-        
-     }
-
     void Update()
     {
        
