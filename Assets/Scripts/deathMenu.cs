@@ -4,17 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class deathMenu : MonoBehaviour
 {
-     public GameObject DeadMenu;
+     public GameObject DeadMenu; 
+     private PlayerController player;
     public static bool isPaused;
 
     void Start()
     {
+        player = FindFirstObjectByType<PlayerController>();
         DeadMenu.SetActive(false);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+        if(player.Dead)
         {
             if(isPaused)
             {
@@ -38,7 +40,7 @@ public class deathMenu : MonoBehaviour
         DeadMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-     SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("Level");
         Debug.Log("Loading level");
     }
    
