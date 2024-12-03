@@ -3,6 +3,7 @@ using UnityEditor.Rendering;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform[] rightWallCheckPoints;
     [SerializeField] private Transform[] ceilingCheckPoints;
     [SerializeField] private LayerMask detectionLayerMask;
+
+    [SerializeField] private TextMeshProUGUI jumpForceText;  
+    [SerializeField] private TextMeshProUGUI heightText;    
+
     private bool isGrounded, isChargingJump, isJumping, isTouchingLeftWall, isTouchingRightWall, isTouchingCeiling, isDead;
     private float currentJumpForce = 0f;
     private Vector2 lastMovementDirection = Vector2.right;
@@ -35,12 +40,19 @@ public class PlayerController : MonoBehaviour
         isDead = value;
     }
 
-    void Start() 
-    { 
-        rb = GetComponent<Rigidbody2D>(); 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
+    private void UpdateUI()
+    {
+        jumpForceText.text = $"Jump Force: {currentJumpForce:F2}";
+        heightText.text = $"Height: {transform.position.y:F2}m";
+    }
+
     void Update()
     {
        
@@ -88,17 +100,21 @@ public class PlayerController : MonoBehaviour
             }
             else if (isChargingJump && Input.GetButtonUp("Jump")) { Jump(); isChargingJump = false; }
         }
+        UpdateUI(); 
     }
 
     private void FixedUpdate()
     {
         if (isGrounded && !isJumping && !isChargingJump)
             rb.velocity = new Vector2(movement.x, rb.velocity.y);
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            transform.position = new Vector2 (4, 82);
+            transform.position = new Vector2(4, 82);
         }
     }
+
+   
+
 
     private void Jump()
     {
