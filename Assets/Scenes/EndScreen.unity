@@ -966,7 +966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Thank you for playing our Alpha of Comet''s Climb
+  m_text: 'Thank you for playing our Beta of Comet''s Climb
 
     - Dev team'
   m_isRightToLeft: 0
@@ -1280,19 +1280,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-adding Traps (trap doors, spikes)
+  m_text: '
 
     -CheckPoints
 
-    -Customize Comet''s
-    suit colour
+    -Customize Comet''s suit colour
 
-    -and many more features
+    -and many
+    more features
 
-    -jump charge bar
-
-    (subject
-    to change)
+    (subject to change)
 
 '
   m_isRightToLeft: 0
